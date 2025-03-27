@@ -9,7 +9,7 @@ function cssLinks($path) {
         return ''; // Retourneer niets als de map niet bestaat
     }
     $files = scandir($fullPath);
-
+   
     /* Als de map niet bestaat, retourneert de functie een lege tekenreeks ('') en gebeurt er niets. 
     Dit betekent dat als de map niet bestaat, er geen CSS-links worden gegenereerd en er niets op de pagina verschijnt. */
     $cssLinks = '';

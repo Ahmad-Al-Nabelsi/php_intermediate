@@ -27,12 +27,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["student_id"], $_POST["
         // Werk het cijfer bij als het bestaat.
         $stmt = $pdo->prepare("UPDATE results SET score = ? WHERE student_id = ? AND test_id = ?");
         $stmt->execute([$score, $student_id, $test_id]);
-        echo "<p style='color:green;'>✅ تم تحديث الدرجة بنجاح!</p>";
+        echo "<p style='color:green;'>✅ Het cijfer is succesvol bijgewerkt!</p>";
     } else {
         // Voeg een nieuw cijfer in als dit nog niet bestaat
         $stmt = $pdo->prepare("INSERT INTO results (student_id, test_id, score) VALUES (?, ?, ?)");
         $stmt->execute([$student_id, $test_id, $score]);
-        echo "<p style='color:green;'>✅ تم إضافة الدرجة بنجاح!</p>";
+        echo "<p style='color:green;'>✅ Het cijfer is succesvol toegevoegd!</p>";
     }
 }
 

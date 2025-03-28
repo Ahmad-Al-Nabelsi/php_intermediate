@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["student_id"], $_POST["
     $test_id = $_POST["test_id"];
     $score = $_POST["score"];
 
-    // Controleer of de graad al bestaat
+    // Controleer of het cijfer al bestaat
     $stmt = $pdo->prepare("SELECT * FROM results WHERE student_id = ? AND test_id = ?");
     $stmt->execute([$student_id, $test_id]);
     $existing = $stmt->fetch();
@@ -90,4 +90,4 @@ $scores = $pdo->query("
 
 <br>
 <!-- Navigatieknoppen -->
-<a href="dashboard.php">🏠 Terug naar Home< /a> | <a href="logout.php">🚪 uitloggen </a>
+<a href="dashboard.php">🏠 Terug naar Home </a> | <a href="logout.php">🚪 uitloggen </a>

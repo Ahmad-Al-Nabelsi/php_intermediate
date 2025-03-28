@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["delete_student"])) {
 $students = $pdo->query("SELECT * FROM users WHERE role = 'student'")->fetchAll();
 ?>
 
-<h2>إدارة الطلاب</h2>
+<h2> Studentenadministratie </h2>
 
 <!-- Formulier voor toevoeging van nieuwe studenten -->
 <form method="post">

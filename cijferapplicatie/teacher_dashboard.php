@@ -9,7 +9,7 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["role"] !== "teacher") {
 }
 ?>
 
-<h2>🎓 لوحة تحكم المعلم</h2>
+<h2>🎓 Controlepaneel voor docenten </h2>
 
 <ul>
     <li><a href="manage_tests.php">📌 Testbeheer </a></li>

@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS results (
 
 -- Testgegevens toevoegen (optioneel)
 INSERT INTO users (name, email, password, role) VALUES 
-('Leraar Ahmed', 'teacher@example.com', 'hashed_password_here', 'teacher'),
+('Docent Ahmed', 'teacher@example.com', 'hashed_password_here', 'teacher'),
 ('Student Mohammed', 'student@example.com', 'hashed_password_here', 'student');
 
 INSERT INTO tests (title, description) VALUES 

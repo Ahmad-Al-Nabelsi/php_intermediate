@@ -2,35 +2,35 @@
 session_start();
 require 'db.php';
 
-// تأكيد أن المستخدم هو معلم
+// Bevestig dat de gebruiker een docent is
 if (!isset($_SESSION["user_id"]) || $_SESSION["role"] != "teacher") {
     header("Location: dashboard.php");
     exit();
 }
 
-// إضافة طالب جديد
+// Voeg een nieuwe student toe
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_student"])) {
     $name = trim($_POST["name"]);
     $email = trim($_POST["email"]);
     $password = password_hash($_POST["password"], PASSWORD_ARGON2ID);
 
-    // التحقق من عدم تكرار البريد الإلكتروني
+    // Controleer of het e-mailadres niet dubbel is
     $checkStmt = $pdo->prepare("SELECT id FROM users WHERE email = ?");
     $checkStmt->execute([$email]);
     
     if ($checkStmt->rowCount() > 0) {
-        echo "<p style='color:red;'>⚠️ البريد الإلكتروني مسجل بالفعل!</p>";
+        echo "<p style='color:red;'>⚠️ E-mailadres al geregistreerd!</p>";
     } else {
         $stmt = $pdo->prepare("INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, 'student')");
         if ($stmt->execute([$name, $email, $password])) {
-            echo "<p style='color:green;'>✅ تم إضافة الطالب بنجاح!</p>";
+            echo "<p style='color:green;'>✅ Student succesvol toegevoegd!</p>";
         } else {
-            echo "<p style='color:red;'>❌ حدث خطأ أثناء الإضافة!</p>";
+            echo "<p style='color:red;'>❌ Er is een fout opgetreden bij het toevoegen!</p>";
         }
     }
 }
 
-// تحديث بيانات الطالب
+// Studentgegevens bijwerken
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["edit_student"])) {
     $id = $_POST["id"];
     $name = trim($_POST["name"]);
@@ -38,30 +38,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["edit_student"])) {
 
     $stmt = $pdo->prepare("UPDATE users SET name = ?, email = ? WHERE id = ? AND role = 'student'");
     if ($stmt->execute([$name, $email, $id])) {
-        echo "<p style='color:green;'>✅ تم تحديث بيانات الطالب بنجاح!</p>";
+        echo "<p style='color:green;'>✅ Studentgegevens succesvol bijgewerkt!</p>";
     } else {
-        echo "<p style='color:red;'>❌ حدث خطأ أثناء التحديث!</p>";
+        echo "<p style='color:red;'>❌ Er is een fout opgetreden tijdens het updaten!</p>";
     }
 }
 
-// حذف طالب بدون JavaScript
+// Student verwijderen
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["delete_student"])) {
     $id = $_POST["id"];
     $stmt = $pdo->prepare("DELETE FROM users WHERE id = ? AND role = 'student'");
     if ($stmt->execute([$id])) {
-        echo "<p style='color:green;'>✅ تم حذف الطالب بنجاح!</p>";
+        echo "<p style='color:green;'>✅ De student is succesvol verwijderd!</p>";
     } else {
-        echo "<p style='color:red;'>❌ حدث خطأ أثناء الحذف!</p>";
+        echo "<p style='color:red;'>❌ Er is een fout opgetreden bij het verwijderen!</p>";
     }
 }
 
-// جلب جميع الطلاب من قاعدة البيانات
+// Haal alle studenten uit de database
 $students = $pdo->query("SELECT * FROM users WHERE role = 'student'")->fetchAll();
 ?>
 
 <h2>إدارة الطلاب</h2>
 
-<!-- نموذج إضافة طالب جديد -->
+<!-- Formulier voor toevoeging van nieuwe studenten -->
 <form method="post">
     <input type="text" name="name" placeholder="اسم الطالب" required>
     <input type="email" name="email" placeholder="البريد الإلكتروني" required>
@@ -71,14 +71,14 @@ $students = $pdo->query("SELECT * FROM users WHERE role = 'student'")->fetchAll(
 
 <hr>
 
-<!-- قائمة الطلاب -->
-<h3>📋 قائمة الطلاب</h3>
+<!-- Studentenlijst -->
+<h3>📋  Studentenlijst </h3>
 <table border="1">
     <tr>
-        <th>👤 الاسم</th>
-        <th>📧 البريد الإلكتروني</th>
-        <th>✏️ تعديل</th>
-        <th>🗑️ حذف</th>
+        <th>👤 Naam </th>
+        <th>📧 Email </th>
+        <th>✏️ Update </th>
+        <th>🗑️ Verwijderen </th>
     </tr>
     <?php foreach ($students as $student): ?>
         <tr>
@@ -104,4 +104,4 @@ $students = $pdo->query("SELECT * FROM users WHERE role = 'student'")->fetchAll(
 
 <br>
 <!-- أزرار الرجوع -->
-<a href="dashboard.php">🏠 الرئيسية</a> | <a href="logout.php">🚪 تسجيل الخروج</a>
+<a href="dashboard.php">🏠 Home </a> | <a href="logout.php">🚪 Uitloggen </a>

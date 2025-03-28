@@ -7,7 +7,7 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["role"] != "student") {
     exit();
 }
 
-echo "<h2>مرحبًا طالب!</h2>";
-echo "<a href='view_results.php'>عرض نتائجي</a>";
-echo "<br><br><a href='dashboard.php'>الرئيسية</a> | <a href='logout.php'>تسجيل الخروج</a>";
+echo "<h2>Hallo student!</h2>";
+echo "<a href='view_results.php'>Bekijk mijn resultaten</a>";
+echo "<br><br><a href='dashboard.php'>Home</a> | <a href='logout.php'>Uitloggen</a>";
 ?>

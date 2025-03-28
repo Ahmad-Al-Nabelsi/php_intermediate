@@ -15,9 +15,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_test"])) {
 
     $stmt = $pdo->prepare("INSERT INTO tests (title, description) VALUES (?, ?)");
     if ($stmt->execute([$title, $description])) {
-        echo "<p style='color:green;'>✅ تم إضافة الاختبار بنجاح!</p>";
+        echo "<p style='color:green;'>✅ Test succesvol toegevoegd!</p>";
     } else {
-        echo "<p style='color:red;'>❌ حدث خطأ أثناء الإضافة!</p>";
+        echo "<p style='color:red;'>❌ Er is een fout opgetreden bij het toevoegen!</p>";
     }
 }
 
@@ -26,9 +26,9 @@ if (isset($_GET["delete"])) {
     $id = $_GET["delete"];
     $stmt = $pdo->prepare("DELETE FROM tests WHERE id = ?");
     if ($stmt->execute([$id])) {
-        echo "<p style='color:green;'>✅ تم حذف الاختبار بنجاح!</p>";
+        echo "<p style='color:green;'>✅ De test is succesvol verwijderd!</p>";
     } else {
-        echo "<p style='color:red;'>❌ حدث خطأ أثناء الحذف!</p>";
+        echo "<p style='color:red;'>❌Er is een fout opgetreden bij het verwijderen!</p>";
     }
 }
 
@@ -36,13 +36,13 @@ if (isset($_GET["delete"])) {
 $tests = $pdo->query("SELECT * FROM tests")->fetchAll();
 ?>
 
-<h2>📚 إدارة الاختبارات</h2>
+<h2>📚 Testbeheer </h2>
 
 <!-- Nieuw testformulier toevoegen -->
 <form method="post">
-    <input type="text" name="title" placeholder="عنوان الاختبار" required>
-    <textarea name="description" placeholder="وصف الاختبار" required></textarea>
-    <button type="submit" name="add_test">➕ إضافة اختبار</button>
+    <input type="text" name="title" placeholder="Testtitel" required>
+    <textarea name="description" placeholder="Testbeschrijving" required></textarea>
+    <button type="submit" name="add_test">➕ Test toevoegen </button>
 </form>
 
 <hr>
@@ -68,4 +68,4 @@ $tests = $pdo->query("SELECT * FROM tests")->fetchAll();
 
 <br>
 <!-- Terug knoppen -->
-<a href="dashboard.php">🏠 الرئيسية</a> | <a href="logout.php">🚪Uitloggen </a>
+<a href="dashboard.php">🏠 Home </a> | <a href="logout.php">🚪Uitloggen </a>

@@ -63,10 +63,10 @@ $students = $pdo->query("SELECT * FROM users WHERE role = 'student'")->fetchAll(
 
 <!-- Formulier voor toevoeging van nieuwe studenten -->
 <form method="post">
-    <input type="text" name="name" placeholder="اسم الطالب" required>
-    <input type="email" name="email" placeholder="البريد الإلكتروني" required>
-    <input type="password" name="password" placeholder="كلمة المرور" required>
-    <button type="submit" name="add_student">➕ إضافة طالب</button>
+    <input type="text" name="name" placeholder="Naam" required>
+    <input type="email" name="email" placeholder="Email" required>
+    <input type="password" name="password" placeholder="Wachtwoord" required>
+    <button type="submit" name="add_student">➕ Student Toevoegen </button>
 </form>
 
 <hr>
@@ -95,7 +95,7 @@ $students = $pdo->query("SELECT * FROM users WHERE role = 'student'")->fetchAll(
             <td>
                 <form method="post" style="display:inline;">
                     <input type="hidden" name="id" value="<?= $student["id"] ?>">
-                    <button type="submit" name="delete_student" onclick="return confirmDelete();">🗑️ حذف</button>
+                    <button type="submit" name="delete_student" onclick="return confirmDelete();">🗑️ Verwijderen </button>
                 </form>
             </td>
         </tr>
@@ -103,5 +103,5 @@ $students = $pdo->query("SELECT * FROM users WHERE role = 'student'")->fetchAll(
 </table>
 
 <br>
-<!-- أزرار الرجوع -->
+<!-- Terug knoppen -->
 <a href="dashboard.php">🏠 Home </a> | <a href="logout.php">🚪 Uitloggen </a>

@@ -1,7 +1,8 @@
 <?php
 include 'config.php';
 
-// Query om taken op te halen
+// Alle taken worden uit de database opgehaald en gesorteerd op oplopende vervaldatum.
+// ASC:Ascending betekent oplopend, DESC:Descending betekent aflopend.
 $sql = "SELECT * FROM tasks ORDER BY due_date ASC";
 $result = $conn->query($sql);
 ?>

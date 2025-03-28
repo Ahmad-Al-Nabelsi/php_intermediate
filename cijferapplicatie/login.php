@@ -16,16 +16,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["role"] = $user["role"];
             header("Location: dashboard.php");
         } else {
-            echo "<p style='color:red;'>كلمة المرور غير صحيحة!</p>";
+            echo "<p style='color:red;'>Onjuist wachtwoord!</p>";
         }
     } else {
-        echo "<p style='color:red;'>البريد الإلكتروني غير مسجل!</p>";
+        echo "<p style='color:red;'>E-mailadres niet geregistreerd!</p>";
     }
 }
 ?>
 <form method="post">
-    <input type="email" name="email" placeholder="البريد الإلكتروني" required>
-    <input type="password" name="password" placeholder="كلمة المرور" required>
-    <button type="submit">تسجيل الدخول</button>
+    <input type="email" name="email" placeholder="Email" required>
+    <input type="password" name="password" placeholder="Wachtwoord" required>
+    <button type="submit">Login</button>
 </form>
-<a href="dashboard.php">رجوع</a>
+<a href="dashboard.php">vorige</a>

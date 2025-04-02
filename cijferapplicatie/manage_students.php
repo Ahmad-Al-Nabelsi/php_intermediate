@@ -12,7 +12,6 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["role"] != "teacher") {
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_student"])) {
     $name = trim($_POST["name"]);
     $email = trim($_POST["email"]);
-    $password = password_hash($_POST["password"], PASSWORD_ARGON2ID);
 
     // Controleer of het e-mailadres niet dubbel is
     $checkStmt = $pdo->prepare("SELECT id FROM users WHERE email = ?");
@@ -21,8 +20,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_student"])) {
     if ($checkStmt->rowCount() > 0) {
         echo "<p style='color:red;'>⚠️ E-mailadres al geregistreerd!</p>";
     } else {
-        $stmt = $pdo->prepare("INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, 'student')");
-        if ($stmt->execute([$name, $email, $password])) {
+        $stmt = $pdo->prepare("INSERT INTO users (name, email, role) VALUES (?, ?, 'student')");
+        if ($stmt->execute([$name, $email])) {
             echo "<p style='color:green;'>✅ Student succesvol toegevoegd!</p>";
         } else {
             echo "<p style='color:red;'>❌ Er is een fout opgetreden bij het toevoegen!</p>";
@@ -65,7 +64,7 @@ $students = $pdo->query("SELECT * FROM users WHERE role = 'student'")->fetchAll(
 <form method="post">
     <input type="text" name="name" placeholder="Naam" required>
     <input type="email" name="email" placeholder="Email" required>
-    <input type="password" name="password" placeholder="Wachtwoord" required>
+    <!-- <input type="password" name="password" placeholder="Wachtwoord" required> -->
     <button type="submit" name="add_student">➕ Student Toevoegen </button>
 </form>
 
@@ -89,7 +88,7 @@ $students = $pdo->query("SELECT * FROM users WHERE role = 'student'")->fetchAll(
                     <input type="hidden" name="id" value="<?= $student["id"] ?>">
                     <input type="text" name="name" value="<?= htmlspecialchars($student["name"]) ?>" required>
                     <input type="email" name="email" value="<?= htmlspecialchars($student["email"]) ?>" required>
-                    <button type="submit" name="edit_student">💾 حفظ</button>
+                    <button type="submit" name="edit_student">💾 Bewaren </button>
                 </form>
             </td>
             <td>

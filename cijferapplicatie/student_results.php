@@ -42,4 +42,4 @@ $results = $stmt->fetchAll();
 <?php endif; ?>
 
 <br>
-<a href="dashboard.php">🏠 Terug naar Homeeee </a> | <a href="logout.php">🚪Uitloggen </a>
+<a href="dashboard.php">🏠 Terug naar Home </a> | <a href="logout.php">🚪Uitloggen </a>

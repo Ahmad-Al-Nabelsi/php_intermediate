@@ -6,7 +6,7 @@ include_once __DIR__ . '/core/bootstrap.php';
 include_once __DIR__ . '/core/css.php';
 
 /* Roep de bootstrap-functie aan en geef de mapnaam door
-   en voer bootstrap uit om automatisch alle kernbestanden te laden */
+   en voer bootstrap uit om automatisch alle core-bestanden te laden */
 
 //bootstrap('core');
 ?>
@@ -19,7 +19,7 @@ include_once __DIR__ . '/core/css.php';
     <h1> Welkom op onze website! </h1>
 <?php 
     /* Roep de bootstrap-functie aan en geef de mapnaam door
-       en voer bootstrap uit om automatisch alle kernbestanden te laden */
+       en voer bootstrap uit om automatisch alle core-bestanden te laden */
     bootstrap('core'); ?>
 
     <!-- Inhoud hier -->

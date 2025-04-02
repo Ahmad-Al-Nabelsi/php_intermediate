@@ -24,5 +24,5 @@ if (!isset($_SESSION["user_id"])) {
     }
 }
 
-echo "<br><br><a href='logout.php'> uitloggen </a>";
+// echo "<br><br><a href='logout.php'> uitloggen </a>";
 ?>

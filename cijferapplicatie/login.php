@@ -11,6 +11,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user = $stmt->fetch();
 
     if ($user) {
+        /* password_verify is een ingebouwde functie in PHP waarmee een ingevoerd wachtwoord 
+        (zoals het wachtwoord dat een gebruiker typt in een inlogformulier) wordt vergeleken 
+        met een gecodeerd wachtwoord dat is opgeslagen in de database.*/
         if (password_verify($password, $user["password"])) {
             $_SESSION["user_id"] = $user["id"];
             $_SESSION["role"] = $user["role"];

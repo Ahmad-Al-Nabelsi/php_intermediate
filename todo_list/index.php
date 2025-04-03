@@ -31,7 +31,7 @@ if ($result->num_rows > 0) {
         echo ' <a href="delete_task.php?id=' . $row['id'] . '">Delete</a></p>';
     }
 } else {
-    echo "<p>No tasks found.</p>";
+    echo "<p>Geen taken gevonden</p>";
 }
 ?>
 

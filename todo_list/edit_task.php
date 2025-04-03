@@ -13,11 +13,11 @@ if ($taskId) {
         $task = $row['task'];
         $due_date = $row['due_date'];
     } else {
-        echo "Task not found.";
+        echo "Taak niet gevonden";
         exit();
     }
 } else {
-    echo "No task ID provided.";
+    echo "Er is geen taak-ID opgegeven";
     exit();
 }
 

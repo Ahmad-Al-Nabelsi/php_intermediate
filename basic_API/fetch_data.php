@@ -24,6 +24,9 @@ function fetch_data($conn, $find, $page = 1, $sort = null) {
         om het sorteerveld en de sorteerrichting op te geven */
         if ($sort) {
             $sql .= " ORDER BY " . $sort['field'] . " " . $sort['direction'];
+        }else {
+            // Als er geen volgorde is opgegeven, wordt er standaard in aflopende volgorde op prijs gesorteerd.
+            $sql .= " ORDER BY `price` DESC";
         }
         // Voeg de instructies LIMIT en OFFSET toe aan de query om het aantal op te halen records en de offset op te geven.
         $sql .= " LIMIT $limit OFFSET $offset";
